@@ -1,4 +1,4 @@
-# Jake's super awesome game for funsies. Hire me pls
+# Jake's super awesome shoot 'em up game.
 # Frozen Jam by tgfcoder <https://twitter.com/tgfcoder> licensed under CC-BY-3 <http://creativecommons.org/licenses/by/3.0/>
 # Art from Kenney.nl
 
@@ -28,6 +28,15 @@ pygame.mixer.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Star Blast!")
 clock = pygame.time.Clock()
+controllers = []
+
+for i in range(0, pygame.joystick.get_count()):
+    # create a controller object in the list
+    controllers.append(pygame.joystick.Joystick(i))
+    # initialize them all
+    controllers[-1].init()
+    # controller name
+    print "Detected controller '", controllers[-1].get_name(), "'"
 
 font_name = pygame.font.match_font('arial')
 def draw_text(surf, text, size, x, y):
